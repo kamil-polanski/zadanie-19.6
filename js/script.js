@@ -41,10 +41,17 @@ class Stopwatch {
             this.times.seconds = 0;
         }
     }
+
     stop() {
         this.running = false;
         clearInterval(this.watch);
     }
+    resetTime() {
+        this.stop();
+        this.reset();
+        this.print();
+    }
+
 }
 
 function pad0(value) {
@@ -56,8 +63,12 @@ function pad0(value) {
 }
 const stopwatch = new Stopwatch(
     document.querySelector('.stopwatch'));
+
 let startButton = document.getElementById('start');
 startButton.addEventListener('click', () => stopwatch.start());
 
 let stopButton = document.getElementById('stop');
 stopButton.addEventListener('click', () => stopwatch.stop());
+
+let resetButton = document.getElementById('reset');
+resetButton.addEventListener('click', () => stopwatch.resetTime());
